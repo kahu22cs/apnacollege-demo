@@ -5,8 +5,9 @@ import { cartLimiter } from '../middleware/rateLimiter.js';
 
 const router = express.Router();
 
-router.use(authMiddleware);
+// Apply rate limiting before authentication
 router.use(cartLimiter);
+router.use(authMiddleware);
 
 router.get('/', getCart);
 router.post('/', addToCart);
